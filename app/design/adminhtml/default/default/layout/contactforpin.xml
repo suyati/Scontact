@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <contactforpin_adminhtml_contactforpin_index>
+        <reference name="content">
+            <block type="contactforpin/adminhtml_contactforpin" name="contactforpin" />
+        </reference>
+    </contactforpin_adminhtml_contactforpin_index>
+</layout>

@@ -1,0 +1,85 @@
+<!-- /*!
+ * http://suyati.com/
+ * Suyati_Contactforpin 1.6.1
+ * Copyright (C) 2016, Suyati Technologies
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+   You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+*/-->
+<?php
+$pincode_required  = Mage::getStoreConfig('contactforpin_options/section_one/contactforpin_custom_field_one',Mage::app()->getStore());
+$location_required = Mage::getStoreConfig('contactforpin_options/section_one/contactforpin_custom_field_two',Mage::app()->getStore());
+
+?>
+
+<div class="newlocation">
+
+<?php /*?><div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="page-title">
+    <h1><?php echo $this->__('Contactforpin Sign-Up') ?></h1>
+</div><?php */?>
+<form action="<?php echo $this->getUrl("Contactforpin/index/post"); ?>" id="retailerForm" method="post">
+<div class="row">
+<div class="col-sm-24">
+<div class="fieldset" style="width:100%">
+<?php /*?><h2 class="legend"><?php echo $this->__('New Contactforpins') ?></h2><?php */?>
+<h3><?php echo $this->__('Please let us know your contact information') ?></h3>
+    <ul class="form-list" style="list-style: none;margin: 0;padding: 0;">
+        <li class="fields">
+            <div class="field"> 
+            <label for="firstname" class="required"><em>*</em><?php echo $this->__('Name') ?></label>
+            <div class="input-box">
+                <input name="firstname" id="firstname" title="<?php echo $this->__('Name') ?>" value="" class="input-text inBx required-entry validate-alpha" type="text" />
+            </div>
+            </div>
+            <div class="field">
+             <label for="email" class="required"><em>*</em><?php echo $this->__('Email') ?></label>
+             <div class="input-box">
+                <input name="email" id="email" title="<?php echo $this->__('Email') ?>" value="<?php echo $this->escapeHtml($this->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+             </div>
+             </div>
+         </li>
+         
+         <li class="fields">
+            <div class="field">
+             <label for="telephone" class="required"><em>*</em><?php echo $this->__('Mobile Phone') ?></label>
+             <div class="input-box">
+                <input name="phone1" id="phone1" title="<?php echo $this->__('Mobile Number') ?>" value="" class="input-text required-entry validate-phoneLax" type="text" />
+             </div>
+             </div>
+            <div class="field"> 
+            <label for="location" class="<?php if($location_required==1){ echo "required";}?>"><?php if($location_required==1){ echo "<em>*</em>";}?><?php echo $this->__('Your Location') ?></label>
+            <div class="input-box">
+                <input name="location" id="location" title="<?php echo $this->__('Location') ?>" value="" class="input-text <?php if($location_required==1){ echo 'required-entry';}?>" type="text" />
+            </div>
+            </div>
+            <div class="field">
+             <label for="pincode" class="<?php if($pincode_required==1){ echo "required";}?>"><?php if($pincode_required==1){ echo "<em>*</em>";}?><?php echo $this->__('Pincode') ?></label>
+             <div class="input-box">
+                <input name="pincode" id="pincode" title="<?php echo $this->__('Pincode') ?>" value="" class="input-text <?php if($pincode_required==1){ echo 'required-entry';}?>" type="text" />
+             </div>
+             </div>
+         </li>         
+     </ul>
+     <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+ </div>
+ <div class="buttons-set" style="margin-top:20px;"> 
+ <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+ <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+ </div>
+ </div>
+ </div>
+ </form>
+ 
+<?php echo $this->getChildHtml('retailer_active'); ?>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('retailerForm', true);
+	(function($) {
+			$(".newlocation input").blur();
+			window.scrollTo(0,0);
+        })(jQuery);
+//]]>
+</script>
+</div>
